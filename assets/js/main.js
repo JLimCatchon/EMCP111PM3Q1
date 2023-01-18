@@ -61,7 +61,7 @@ scene.add(wallRight);
 
 //ceiling
 const ceilingGeometry = new THREE.BoxGeometry(30,1,30);
-const ceilingMaterial = new THREE.MeshLambertMaterial({map: ceilingTexture});
+const ceilingMaterial = new THREE.MeshBasicMaterial({map: ceilingTexture});
 const ceiling = new THREE.Mesh(ceilingGeometry,ceilingMaterial);
 scene.add(ceiling);
 
