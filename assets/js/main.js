@@ -6,9 +6,13 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild( renderer.domElement );
 
 //lights
-const light = new THREE.AmbientLight( 0x404040, 2 ); // soft white light
+const light = new THREE.AmbientLight( 0x404040, 0.1 );
 scene.add( light );
-
+const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+scene.add( directionalLight );
+const bulbLight = new THREE.PointLight(0x404040, 7, 100);
+bulbLight.position.set(5,9.5,-30);
+scene.add(bulbLight);
 
 //textures
 
@@ -17,6 +21,7 @@ const wavyTexture = new THREE.TextureLoader().load( 'assets/textures/wavywall.jp
 const ceilingTexture = new THREE.TextureLoader().load( 'assets/textures/ceiling.jpg');
 const woodenTexture = new THREE.TextureLoader().load( 'assets/textures/wooden.jpg');
 const railingTexture = new THREE.TextureLoader().load( 'assets/textures/silverrailing.jpg');
+const couchTexture  = new THREE.TextureLoader().load( 'assets/textures/couch.jpg');
 //Objects
 
 //floor
@@ -39,9 +44,9 @@ const wallLeftMaterial = new THREE.MeshLambertMaterial({ map: brickTexture});
 const wallLeft = new THREE.Mesh(wallLeftGeometry,wallLeftMaterial);
 const wallLeftSecond = new THREE.Mesh(wallLeftGeometry,wallLeftMaterial);
 
-scene.add(wallLeftSecond);
-scene.add(wallLeft);
 
+scene.add(wallLeft);
+scene.add(wallLeftSecond);
 //wall front
 const wallFrontGeometry = new THREE.BoxGeometry(30,30,1);
 const wallFrontMaterial = new THREE.MeshLambertMaterial({ map: brickTexture});
@@ -68,10 +73,10 @@ const railingSecond = new THREE.Mesh(railingGeometry,railingMaterial);
 const railingThird = new THREE.Mesh(railingGeometry,railingMaterial);
 const railingFourth = new THREE.Mesh(railingGeometry,railingMaterial);
 
-scene.add(railingFourth);
-scene.add(railingThird);
-scene.add(railingSecond);
 scene.add(railing);
+scene.add(railingSecond);
+scene.add(railingThird);
+scene.add(railingFourth);
 
 const railingHolderGeometry = new THREE.BoxGeometry(1,1,15);
 const railingHolderMaterial = new THREE.MeshLambertMaterial({map: railingTexture});
@@ -83,10 +88,33 @@ const railingHolderHorizontalMaterial = new THREE.MeshLambertMaterial({map: rail
 const railingHolderHorizontal = new THREE.Mesh(railingHolderHorizontalGeometry,railingHolderHorizontalMaterial);
 scene.add(railingHolderHorizontal);
 
+//couch
+const couchFlatGeometry = new THREE.BoxGeometry(15,4,2);
+const couchFlatMaterial = new THREE.MeshLambertMaterial({map: couchTexture});
+const couchFlat = new THREE.Mesh(couchFlatGeometry,couchFlatMaterial);
+scene.add(couchFlat);
+//couch side
+const couchSideGeometry = new THREE.BoxGeometry(1,10,3);
+const couchSideMaterial = new THREE.MeshLambertMaterial({map: couchTexture});
+const couchSide = new THREE.Mesh(couchSideGeometry,couchSideMaterial);
+const couchSideRight = new THREE.Mesh(couchSideGeometry,couchSideMaterial);
+scene.add(couchSide);
+scene.add(couchSideRight);
+//couch back
+const couchBackGeometry = new THREE.BoxGeometry(14,5,1);
+const couchBackMaterial = new THREE.MeshPhongMaterial({map: couchTexture});
+const couchBack = new THREE.Mesh(couchBackGeometry,couchBackMaterial);
+scene.add(couchBack);
+
+//light
+const lightbulbGeometry = new THREE.CylinderGeometry( 3.45, 3.45, 1, 8 );
+const lightbulbMaterial = new THREE.MeshBasicMaterial({color: 'white'});
+const lightbulb = new THREE.Mesh(lightbulbGeometry,lightbulbMaterial);
+scene.add(lightbulb);
 //Camera Adjustment
 camera.position.x = 5; // 5
 camera.position.y = -2; //0
-camera.position.z = -20; //-30
+camera.position.z = -20; //-20
 
 
 ///Insert Code here
@@ -152,6 +180,27 @@ function animate() {
     railingHolderHorizontal.position.x = -5;
     railingHolderHorizontal.position.y = -6;
     railingHolderHorizontal.position.z = -34;
+
+    //couch
+    couchFlat.position.x = 8;
+    couchFlat.position.y = -7;
+    couchFlat.position.z = -38;
+    
+    couchSide.position.x = 1.2;
+    couchSide.position.y = -7;
+    couchSide.position.z = -38;
+
+    couchSideRight.position.x = 15;
+    couchSideRight.position.y = -7;
+    couchSideRight.position.z = -38;
+
+    couchBack.position.x = 8;
+    couchBack.position.y = -4;
+    couchBack.position.z = -38;
+    //lightbulb
+    lightbulb.position.x = 5;
+    lightbulb.position.y = 9.5;
+    lightbulb.position.z = -30;
     renderer.render( scene, camera );
 }
 
