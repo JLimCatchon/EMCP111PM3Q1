@@ -10,17 +10,23 @@ const light = new THREE.AmbientLight( 0x404040, 2 ); // soft white light
 scene.add( light );
 
 
+//textures
 
+const brickTexture = new THREE.TextureLoader().load( 'assets/textures/secondbrickwall.jpg');
+const wavyTexture = new THREE.TextureLoader().load( 'assets/textures/wavywall.jpg');
+const ceilingTexture = new THREE.TextureLoader().load( 'assets/textures/ceiling.jpg');
+const woodenTexture = new THREE.TextureLoader().load( 'assets/textures/wooden.jpg');
+const railingTexture = new THREE.TextureLoader().load( 'assets/textures/silverrailing.jpg');
 //Objects
 
 //floor
 const floorGeometry = new THREE.BoxGeometry( 30, 1, 10 );
-const floorMaterial = new THREE.MeshLambertMaterial( { color: 'pink'} );
+const floorMaterial = new THREE.MeshLambertMaterial( { map: woodenTexture} );
 const floor = new THREE.Mesh( floorGeometry, floorMaterial );
 scene.add( floor );
 
 const floorPartGeometry = new THREE.BoxGeometry(20,1,15);
-const floorPartMaterial = new THREE.MeshLambertMaterial( { color: 'pink'} );
+const floorPartMaterial = new THREE.MeshLambertMaterial( { map: woodenTexture} );
 const floorPart = new THREE.Mesh( floorPartGeometry,floorPartMaterial );
 scene.add(floorPart);
 
@@ -29,7 +35,7 @@ scene.add(floorPart);
 //wall left side
 
 const wallLeftGeometry = new THREE.BoxGeometry(1,30,30);
-const wallLeftMaterial = new THREE.MeshLambertMaterial({color: 'green'});
+const wallLeftMaterial = new THREE.MeshLambertMaterial({ map: brickTexture});
 const wallLeft = new THREE.Mesh(wallLeftGeometry,wallLeftMaterial);
 const wallLeftSecond = new THREE.Mesh(wallLeftGeometry,wallLeftMaterial);
 
@@ -38,25 +44,25 @@ scene.add(wallLeft);
 
 //wall front
 const wallFrontGeometry = new THREE.BoxGeometry(30,30,1);
-const wallFrontMaterial = new THREE.MeshLambertMaterial({color: 'white'});
+const wallFrontMaterial = new THREE.MeshLambertMaterial({ map: brickTexture});
 const wallFront = new THREE.Mesh(wallFrontGeometry,wallFrontMaterial);
 scene.add(wallFront);
 
 //wall right
 const wallRightGeometry = new THREE.BoxGeometry(1,30,30);
-const wallRightMaterial = new THREE.MeshLambertMaterial({color: 'green'});
+const wallRightMaterial = new THREE.MeshLambertMaterial({ map: woodenTexture});
 const wallRight = new THREE.Mesh(wallRightGeometry,wallRightMaterial);
 scene.add(wallRight);
 
 //ceiling
 const ceilingGeometry = new THREE.BoxGeometry(30,1,30);
-const ceilingMaterial = new THREE.MeshLambertMaterial({color: 'pink'});
+const ceilingMaterial = new THREE.MeshLambertMaterial({map: ceilingTexture});
 const ceiling = new THREE.Mesh(ceilingGeometry,ceilingMaterial);
 scene.add(ceiling);
 
 //railing
 const railingGeometry = new THREE.CapsuleGeometry(1,4,10,20);
-const railingMaterial = new THREE.MeshLambertMaterial({color: 'green'});
+const railingMaterial = new THREE.MeshLambertMaterial({map: railingTexture});
 const railing = new THREE.Mesh(railingGeometry,railingMaterial);
 const railingSecond = new THREE.Mesh(railingGeometry,railingMaterial);
 const railingThird = new THREE.Mesh(railingGeometry,railingMaterial);
@@ -68,12 +74,12 @@ scene.add(railingSecond);
 scene.add(railing);
 
 const railingHolderGeometry = new THREE.BoxGeometry(1,1,15);
-const railingHolderMaterial = new THREE.MeshLambertMaterial({color: 'white'});
+const railingHolderMaterial = new THREE.MeshLambertMaterial({map: railingTexture});
 const railingHolder = new THREE.Mesh(railingHolderGeometry,railingHolderMaterial);
 scene.add(railingHolder);
 
 const railingHolderHorizontalGeometry = new THREE.BoxGeometry(12,1,1);
-const railingHolderHorizontalMaterial = new THREE.MeshLambertMaterial({color: 'white'});
+const railingHolderHorizontalMaterial = new THREE.MeshLambertMaterial({map: railingTexture});
 const railingHolderHorizontal = new THREE.Mesh(railingHolderHorizontalGeometry,railingHolderHorizontalMaterial);
 scene.add(railingHolderHorizontal);
 
